@@ -1,6 +1,6 @@
 {
-  "name": "express-logger",
-  "version": "1.0.0",
+  "name": "@webdevadammalej/express-logger",
+  "version": "1.0.1",
   "description": "Express logger",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
-  "keywords": ["express", "Express", "logger", "Logger"],
+  "keywords": [
+    "express",
+    "Express",
+    "logger",
+    "Logger"
+  ],
   "author": "WebDevAdamMalej",
   "license": "ISC",
   "devDependencies": {
@@ -21,5 +26,13 @@
     "express-http-context": "^1.2.4",
     "express-winston": "^4.2.0",
     "winston": "^3.7.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MalejAdam/express-logger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MalejAdam/express-logger/issues"
+  },
+  "homepage": "https://github.com/MalejAdam/express-logger#readme"
 }
