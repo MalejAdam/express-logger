@@ -1,13 +1,15 @@
 {
   "name": "express-logger",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Express logger",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
-  "author": "",
+  "keywords": ["express", "Express", "logger", "Logger"],
+  "author": "WebDevAdamMalej",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^4.6.3"
