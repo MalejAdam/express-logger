@@ -4,11 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@types/express-winston": "^4.0.0",
+    "@types/winston": "^2.4.4",
+    "express": "^4.17.3",
+    "express-http-context": "^1.2.4",
+    "express-winston": "^4.2.0",
+    "winston": "^3.7.2"
   }
 }
