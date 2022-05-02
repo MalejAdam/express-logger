@@ -59,8 +59,9 @@ const formatMessage = (message) => {
     }
     if (message) {
         message += requestId ? ` - requestId: ${requestId}` : '';
+        return message;
     }
-    return message;
+    return { requestId };
 };
 exports.logger = {
     error: ((msg, details) => winstonLogger.error(msg, formatMessage(details))),

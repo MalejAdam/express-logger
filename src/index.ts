@@ -38,11 +38,13 @@ const formatMessage = (message: any): any => {
     return { ...message, requestId };
   }
 
-  if(message) {
+  if (message) {
     message += requestId ? ` - requestId: ${requestId}` : '';
+    
+    return message
   }
 
-  return message;
+  return { requestId }
 }
 
 export const logger = {
