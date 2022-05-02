@@ -31,9 +31,16 @@ interface LoggerMethod {
   (msg: string, details?: any): void;
 }
 
-const formatMessage = (message: string): string => {
-  const requestId = httpContext.get('requestId');
-  message += requestId ? ` - requestId: ${requestId}` : '';
+const formatMessage = (message: any): any => {
+  const requestId = httpContext.get('request-id');
+
+  if(typeof message === 'object') {
+    return { ...message, requestId };
+  }
+
+  if(message) {
+    message += requestId ? ` - requestId: ${requestId}` : '';
+  }
 
   return message;
 }
