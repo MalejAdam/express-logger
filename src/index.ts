@@ -23,7 +23,7 @@ const loggerConfig = {
 
 const winstonLogger = winston.createLogger({
   ...loggerConfig,
-  level: process.env.LOG_LEVEL || 'info',
+  level: process.env.LOG_LEVEL || 'silly',
   silent: !process.env.LOG_LEVEL && process.env.NODE_ENV === 'test',
 });
 
@@ -39,14 +39,14 @@ const formatMessage = (message: string): string => {
 }
 
 export const logger = {
-  error: ((msg, details?) => winstonLogger.error(formatMessage(msg), details)) as LoggerMethod,
-  warn: ((msg, details?) => winstonLogger.warn(formatMessage(msg), details)) as LoggerMethod,
-  info: ((msg, details?) => winstonLogger.info(formatMessage(msg), details)) as LoggerMethod,
-  http: ((msg, details?) => winstonLogger.http(formatMessage(msg), details)) as LoggerMethod,
+  error: ((msg, details?) => winstonLogger.error(msg, formatMessage(details))) as LoggerMethod,
+  warn: ((msg, details?) => winstonLogger.warn(msg, formatMessage(details))) as LoggerMethod,
+  info: ((msg, details?) => winstonLogger.info(msg, formatMessage(details))) as LoggerMethod,
+  http: ((msg, details?) => winstonLogger.http(msg, formatMessage(details))) as LoggerMethod,
   verbose: ((msg, details?) =>
-    winstonLogger.verbose(formatMessage(msg), details)) as LoggerMethod,
-  debug: ((msg, details?) => winstonLogger.debug(formatMessage(msg), details)) as LoggerMethod,
-  silly: ((msg, details?) => winstonLogger.silly(formatMessage(msg), details)) as LoggerMethod,
+    winstonLogger.verbose(msg, formatMessage(details))) as LoggerMethod,
+  debug: ((msg, details?) => winstonLogger.debug(msg, formatMessage(details))) as LoggerMethod,
+  silly: ((msg, details?) => winstonLogger.silly(msg, formatMessage(details))) as LoggerMethod,
 };
 
 const filter = (req: Request, propName: string) => {
