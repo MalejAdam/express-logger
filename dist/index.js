@@ -51,20 +51,25 @@ const loggerConfig = {
     ],
     exitOnError: false,
 };
-const winstonLogger = winston.createLogger(Object.assign(Object.assign({}, loggerConfig), { level: process.env.LOG_LEVEL || 'info', silent: !process.env.LOG_LEVEL && process.env.NODE_ENV === 'test' }));
+const winstonLogger = winston.createLogger(Object.assign(Object.assign({}, loggerConfig), { level: process.env.LOG_LEVEL || 'silly', silent: !process.env.LOG_LEVEL && process.env.NODE_ENV === 'test' }));
 const formatMessage = (message) => {
-    const requestId = express_http_context_1.default.get('requestId');
-    message += requestId ? ` - requestId: ${requestId}` : '';
+    const requestId = express_http_context_1.default.get('request-id');
+    if (typeof message === 'object') {
+        return Object.assign(Object.assign({}, message), { requestId });
+    }
+    if (message) {
+        message += requestId ? ` - requestId: ${requestId}` : '';
+    }
     return message;
 };
 exports.logger = {
-    error: ((msg, details) => winstonLogger.error(formatMessage(msg), details)),
-    warn: ((msg, details) => winstonLogger.warn(formatMessage(msg), details)),
-    info: ((msg, details) => winstonLogger.info(formatMessage(msg), details)),
-    http: ((msg, details) => winstonLogger.http(formatMessage(msg), details)),
-    verbose: ((msg, details) => winstonLogger.verbose(formatMessage(msg), details)),
-    debug: ((msg, details) => winstonLogger.debug(formatMessage(msg), details)),
-    silly: ((msg, details) => winstonLogger.silly(formatMessage(msg), details)),
+    error: ((msg, details) => winstonLogger.error(msg, formatMessage(details))),
+    warn: ((msg, details) => winstonLogger.warn(msg, formatMessage(details))),
+    info: ((msg, details) => winstonLogger.info(msg, formatMessage(details))),
+    http: ((msg, details) => winstonLogger.http(msg, formatMessage(details))),
+    verbose: ((msg, details) => winstonLogger.verbose(msg, formatMessage(details))),
+    debug: ((msg, details) => winstonLogger.debug(msg, formatMessage(details))),
+    silly: ((msg, details) => winstonLogger.silly(msg, formatMessage(details))),
 };
 const filter = (req, propName) => {
     if (propName === 'headers') {
